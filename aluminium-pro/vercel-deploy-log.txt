@@ -1,0 +1,202 @@
+Retrieving project…
+Deploying ajayupadhyay23s-projects/aluminium-pro
+Uploading [--------------------] (0.0B/15.6KB)
+Uploading [=============-------] (10.6KB/15.6KB)
+Uploading [====================] (15.6KB/15.6KB)
+Inspect: https://vercel.com/ajayupadhyay23s-projects/aluminium-pro/HEbmWjgCThqUcmZd6pbmFyYw3Bqt [3s]
+Production: https://aluminium-dwuborcz4-ajayupadhyay23s-projects.vercel.app [3s]
+https://aluminium-dwuborcz4-ajayupadhyay23s-projects.vercel.appBuilding...
+Building...
+Building: Running build in Washington, D.C., USA (East) – iad1
+Building: Build machine configuration: 2 cores, 8 GB
+Building: Retrieving list of deployment files...
+Building: Downloading 125 deployment files...
+Building: Restored build cache from previous deployment (Hwp6yHhjQyNeuzkRFmA2hNB4B4Eg)
+Building: Running "vercel build"
+Building: Vercel CLI 51.6.1
+Building: Installing dependencies...
+Building: > aluminium-pro@0.1.0 postinstall
+Building: > prisma generate
+Building: Environment variables loaded from .env
+Building: Prisma schema loaded from prisma/schema.prisma
+Building: ✔ Generated Prisma Client (v5.22.0) to ./node_modules/@prisma/client in 221ms
+Building: Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+Building: Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+Building: up to date in 3s
+Building: 170 packages are looking for funding
+Building: run `npm fund` for details
+Building: Detected Next.js version: 14.2.35
+Building: Running "npm run build"
+Building: > aluminium-pro@0.1.0 build
+Building: > next build
+Building: ▲ Next.js 14.2.35
+Building: - Environments: .env
+Building: Creating an optimized production build ...
+Building: ✓ Compiled successfully
+Building: Skipping validation of types
+Building: Skipping linting
+Building: Collecting page data ...
+Building: Generating static pages (0/42) ...
+Building: API /admin/analytics error: n [Error]: Dynamic server usage: Route /api/admin/analytics couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+Building: at l (/vercel/path0/.next/server/chunks/8948.js:1:37220)
+Building: at d (/vercel/path0/.next/server/chunks/1083.js:25:31549)
+Building: at s (/vercel/path0/.next/server/chunks/1083.js:25:20859)
+Building: at c (/vercel/path0/.next/server/app/api/admin/analytics/route.js:1:1306)
+Building: at /vercel/path0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+Building: at /vercel/path0/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+Building: at NoopContextManager.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+Building: at ContextAPI.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+Building: at NoopTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+Building: at ProxyTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854) {
+Building: description: "Route /api/admin/analytics couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+Building: digest: 'DYNAMIC_SERVER_USAGE'
+Building: }
+Building: API /admin/orders error: n [Error]: Dynamic server usage: Route /api/admin/orders couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+Building: at l (/vercel/path0/.next/server/chunks/8948.js:1:37220)
+Building: at d (/vercel/path0/.next/server/chunks/1083.js:25:31549)
+Building: at s (/vercel/path0/.next/server/chunks/1083.js:25:20859)
+Building: at p (/vercel/path0/.next/server/app/api/admin/orders/route.js:1:1305)
+Building: at /vercel/path0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+Building: at /vercel/path0/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+Building: at NoopContextManager.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+Building: at ContextAPI.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+Building: at NoopTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+Building: at ProxyTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854) {
+Building: description: "Route /api/admin/orders couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+Building: digest: 'DYNAMIC_SERVER_USAGE'
+Building: }
+Building: GET /api/admin/users error: n [Error]: Dynamic server usage: Route /api/admin/users couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+Building: at l (/vercel/path0/.next/server/chunks/8948.js:1:37220)
+Building: at d (/vercel/path0/.next/server/chunks/1083.js:25:31549)
+Building: at s (/vercel/path0/.next/server/chunks/1083.js:25:20859)
+Building: at d (/vercel/path0/.next/server/app/api/admin/users/route.js:1:1311)
+Building: at /vercel/path0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+Building: at /vercel/path0/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+Building: at NoopContextManager.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+Building: at ContextAPI.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+Building: at NoopTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+Building: at ProxyTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854) {
+Building: description: "Route /api/admin/users couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+Building: digest: 'DYNAMIC_SERVER_USAGE'
+Building: }
+Building: Generating static pages (10/42)
+Building: API /products error: B [Error]: Dynamic server usage: Route /api/products couldn't be rendered statically because it used `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+Building: at V (/vercel/path0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:21778)
+Building: at Object.get (/vercel/path0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:29465)
+Building: at l (/vercel/path0/.next/server/app/api/products/route.js:1:604)
+Building: at /vercel/path0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+Building: at /vercel/path0/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+Building: at NoopContextManager.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+Building: at ContextAPI.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+Building: at NoopTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+Building: at ProxyTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854)
+Building: at /vercel/path0/node_modules/next/dist/server/lib/trace/tracer.js:122:103 {
+Building: description: "Route /api/products couldn't be rendered statically because it used `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+Building: digest: 'DYNAMIC_SERVER_USAGE'
+Building: }
+Building: API /user/orders error: n [Error]: Dynamic server usage: Route /api/user/orders couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+Building: at l (/vercel/path0/.next/server/chunks/8948.js:1:37220)
+Building: at d (/vercel/path0/.next/server/chunks/1083.js:25:31549)
+Building: at s (/vercel/path0/.next/server/chunks/1083.js:25:20859)
+Building: at p (/vercel/path0/.next/server/app/api/user/orders/route.js:1:1306)
+Building: at /vercel/path0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+Building: at /vercel/path0/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+Building: at NoopContextManager.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+Building: at ContextAPI.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+Building: at NoopTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+Building: at ProxyTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854) {
+Building: description: "Route /api/user/orders couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+Building: digest: 'DYNAMIC_SERVER_USAGE'
+Building: }
+Building: API GET /user/profile error: n [Error]: Dynamic server usage: Route /api/user/profile couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+Building: at l (/vercel/path0/.next/server/chunks/8948.js:1:37220)
+Building: at d (/vercel/path0/.next/server/chunks/1083.js:25:31549)
+Building: at s (/vercel/path0/.next/server/chunks/1083.js:25:20859)
+Building: at c (/vercel/path0/.next/server/app/api/user/profile/route.js:1:1316)
+Building: at /vercel/path0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:38417
+Building: at /vercel/path0/node_modules/next/dist/server/lib/trace/tracer.js:140:36
+Building: at NoopContextManager.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:7062)
+Building: at ContextAPI.with (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:518)
+Building: at NoopTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18093)
+Building: at ProxyTracer.startActiveSpan (/vercel/path0/node_modules/next/dist/compiled/@opentelemetry/api/index.js:1:18854) {
+Building: description: "Route /api/user/profile couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+Building: digest: 'DYNAMIC_SERVER_USAGE'
+Building: }
+Building: Generating static pages (20/42)
+Building: Generating static pages (31/42)
+Building: ✓ Generating static pages (42/42)
+Building: Finalizing page optimization ...
+Building: Collecting build traces ...
+Building: Route (app)                              Size     First Load JS
+Building: ┌ ○ /                                    9.95 kB         224 kB
+Building: ├ ○ /_not-found                          151 B          87.5 kB
+Building: ├ ○ /about                               4.76 kB         141 kB
+Building: ├ ƒ /account/dashboard                   2.39 kB         130 kB
+Building: ├ ƒ /account/orders                      2.43 kB         121 kB
+Building: ├ ƒ /account/orders/[id]                 5.03 kB         132 kB
+Building: ├ ƒ /account/profile                     4.46 kB         167 kB
+Building: ├ ○ /acp-sheet-sizes                     845 B          88.2 kB
+Building: ├ ƒ /admin/coupons                       5.41 kB         128 kB
+Building: ├ ƒ /admin/dashboard                     3.08 kB         112 kB
+Building: ├ ƒ /admin/orders                        2.61 kB         130 kB
+Building: ├ ƒ /admin/orders/[id]                   6.41 kB         138 kB
+Building: ├ ƒ /admin/products                      4.58 kB         122 kB
+Building: ├ ƒ /admin/users                         3.47 kB         126 kB
+Building: ├ ƒ /api/admin/analytics                 0 B                0 B
+Building: ├ ƒ /api/admin/coupons                   0 B                0 B
+Building: ├ ƒ /api/admin/coupons/[id]              0 B                0 B
+Building: ├ ƒ /api/admin/orders                    0 B                0 B
+Building: ├ ƒ /api/admin/orders/[id]               0 B                0 B
+Building: ├ ƒ /api/admin/products                  0 B                0 B
+Building: ├ ƒ /api/admin/products/[id]             0 B                0 B
+Building: ├ ƒ /api/admin/users                     0 B                0 B
+Building: ├ ƒ /api/admin/users/[id]                0 B                0 B
+Building: ├ ƒ /api/auth/[...nextauth]              0 B                0 B
+Building: ├ ƒ /api/auth/forgot-password            0 B                0 B
+Building: ├ ƒ /api/auth/register                   0 B                0 B
+Building: ├ ƒ /api/auth/reset-password             0 B                0 B
+Building: ├ ƒ /api/auth/verify-email               0 B                0 B
+Building: ├ ƒ /api/checkout                        0 B                0 B
+Building: ├ ƒ /api/checkout/verify                 0 B                0 B
+Building: ├ ƒ /api/enquiries                       0 B                0 B
+Building: ├ ƒ /api/pincode/[pincode]               0 B                0 B
+Building: ├ ƒ /api/products                        0 B                0 B
+Building: ├ ƒ /api/products/[slug]                 0 B                0 B
+Building: ├ ƒ /api/products/[slug]/reviews         0 B                0 B
+Building: ├ ƒ /api/products/search                 0 B                0 B
+Building: ├ ƒ /api/user/orders                     0 B                0 B
+Building: ├ ƒ /api/user/orders/[id]                0 B                0 B
+Building: ├ ƒ /api/user/profile                    0 B                0 B
+Building: ├ ○ /cart                                3.06 kB         111 kB
+Building: ├ ƒ /category/[slug]                     6.04 kB         140 kB
+Building: ├ ○ /checkout                            4.59 kB         179 kB
+Building: ├ ○ /checkout/success                    3.86 kB         109 kB
+Building: ├ ○ /contact                             4.51 kB         136 kB
+Building: ├ ○ /forgot-password                     3.56 kB         136 kB
+Building: ├ ○ /login                               5.69 kB         125 kB
+Building: ├ ○ /products                            151 B          87.5 kB
+Building: ├ ƒ /products/[slug]                     8.88 kB         183 kB
+Building: ├ ○ /register                            4.4 kB          185 kB
+Building: ├ ○ /reset-password                      3.77 kB         136 kB
+Building: ├ ○ /robots.txt                          0 B                0 B
+Building: └ ○ /sitemap.xml                         0 B                0 B
+Building: + First Load JS shared by all            87.3 kB
+Building: ├ chunks/2117-aa178c3f781dcb47.js      31.7 kB
+Building: ├ chunks/fd9d1056-b4b8306979562587.js  53.6 kB
+Building: └ other shared chunks (total)          1.95 kB
+Building: ƒ Middleware                             49.6 kB
+Building: ○  (Static)   prerendered as static content
+Building: ƒ  (Dynamic)  server-rendered on demand
+Building: Traced Next.js server files in: 50.359ms
+Building: Created all serverless functions in: 297.195ms
+Building: Collected static files (public/, static/, .next/static): 20.282ms
+Building: Build Completed in /vercel/output [25s]
+Building: Deploying outputs...
+[2K[1A[2K[GProduction: https://aluminium-dwuborcz4-ajayupadhyay23s-projects.vercel.app [42s]
+Completing...
+Aliased: https://aluminium-pro.vercel.app [42s]
+
+Common next commands:
+- `vercel inspect aluminium-dwuborcz4-ajayupadhyay23s-projects.vercel.app --logs`
+- `vercel redeploy aluminium-dwuborcz4-ajayupadhyay23s-projects.vercel.app`
+> Tip: Run `npx plugins add vercel/vercel-plugin` to enhance your agent experience

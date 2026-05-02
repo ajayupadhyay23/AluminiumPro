@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 43, 43, 43; /* #2B2B2B */
+  --background-start-rgb: 245, 245, 245; /* #F5F5F5 */
+  --background-end-rgb: 255, 255, 255; /* #FFFFFF */
+}
+
+@layer base {
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-start-rgb));
+    font-family: var(--font-inter), sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-montserrat), sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .bg-aluminium-texture {
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(192, 192, 192, 0.03) 0px,
+      rgba(192, 192, 192, 0.03) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+  }
+}
