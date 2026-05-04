@@ -19,7 +19,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
         items: {
           include: {
             product: {
-              select: { name: true, sku: true, primaryImage: true }
+              select: { name: true, sku: true, images: true }
             }
           }
         },

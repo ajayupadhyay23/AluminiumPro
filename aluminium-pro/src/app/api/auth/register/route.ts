@@ -11,7 +11,7 @@ const registerSchema = z.object({
   password: z.string().min(8, 'Password must be at least 8 characters'),
   businessName: z.string().optional(),
   gstNumber: z.string().optional()
-    .refine(val => !val || /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(val), 'Invalid GST format')
+    .refine(val => !val || /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(val.toUpperCase()), 'Invalid GST format')
 })
 
 export async function POST(req: Request) {
@@ -28,30 +28,46 @@ export async function POST(req: Request) {
 
     const { name, email, phone, password, businessName, gstNumber } = result.data
 
-    // Check if email already registered
-    const existingUser = await prisma.user.findUnique({ where: { email } })
-    if (existingUser) {
-      return NextResponse.json(
-        { success: false, error: 'This email is already registered. Please log in.' },
-        { status: 400 }
-      )
-    }
-
     // Hash password
     const passwordHash = await bcrypt.hash(password, 12)
 
-    // Create user — emailVerified is null until OTP confirmed
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        phone,
-        passwordHash,
-        businessName,
-        gstNumber,
-        role: 'CUSTOMER',
+    // Check if email already registered
+    const existingUser = await prisma.user.findUnique({ where: { email } })
+    
+    let user;
+    if (existingUser) {
+      if (existingUser.emailVerified) {
+        return NextResponse.json(
+          { success: false, error: 'This email is already registered. Please log in.' },
+          { status: 400 }
+        )
       }
-    })
+      
+      // If user exists but is NOT verified, allow "re-registration" (update info and send new OTP)
+      user = await prisma.user.update({
+        where: { id: existingUser.id },
+        data: {
+          name,
+          phone,
+          passwordHash,
+          businessName,
+          gstNumber,
+        }
+      })
+    } else {
+      // Create new user
+      user = await prisma.user.create({
+        data: {
+          name,
+          email,
+          phone,
+          passwordHash,
+          businessName,
+          gstNumber,
+          role: 'CUSTOMER',
+        }
+      })
+    }
 
     // Generate a 6-digit OTP and store it in DB (expires in 15 mins)
     const otp = Math.floor(100000 + Math.random() * 900000).toString()

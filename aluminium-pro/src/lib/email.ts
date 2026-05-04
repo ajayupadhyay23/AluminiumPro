@@ -57,7 +57,7 @@ export async function sendVerificationEmail(email: string, name: string, otp: st
           <!-- Footer -->
           <div style="background: #F9FAFB; padding: 20px 40px; border-top: 1px solid #eaeaea; text-align: center;">
             <p style="color: #9CA3AF; font-size: 12px; margin: 0;">
-              AluminiumPro &bull; Khalilabad, Sant Kabir Nagar, UP &bull; <a href="mailto:sales@aluminiumpro.in" style="color: #D4A853; text-decoration: none;">sales@aluminiumpro.in</a>
+              AluminiumPro &bull; Khalilabad, Sant Kabir Nagar, UP &bull; <a href="mailto:shravanupadhyay54@gmail.com" style="color: #D4A853; text-decoration: none;">shravanupadhyay54@gmail.com</a>
             </p>
           </div>
         </div>
@@ -238,7 +238,7 @@ export async function sendOrderConfirmationEmail(email: string, name: string, or
           <div style="background: #F9FAFB; padding: 20px 40px; border-top: 1px solid #eaeaea; text-align: center;">
             <p style="color: #9CA3AF; font-size: 12px; margin: 0;">
               AluminiumPro &bull; Khalilabad, Sant Kabir Nagar, UP &bull;
-              <a href="mailto:sales@aluminiumpro.in" style="color: #D4A853; text-decoration: none;">sales@aluminiumpro.in</a>
+              <a href="mailto:shravanupadhyay54@gmail.com" style="color: #D4A853; text-decoration: none;">shravanupadhyay54@gmail.com</a>
             </p>
           </div>
         </div>
@@ -328,7 +328,7 @@ export async function sendOrderStatusEmail(email: string, name: string, order: a
             </div>
 
             <p style="color: #9CA3AF; font-size: 13px; line-height: 1.6; margin: 0;">
-              Need help? Contact us at <a href="mailto:sales@aluminiumpro.in" style="color: #D4A853;">sales@aluminiumpro.in</a>
+              Need help? Contact us at <a href="mailto:shravanupadhyay54@gmail.com" style="color: #D4A853;">shravanupadhyay54@gmail.com</a>
             </p>
           </div>
 
@@ -336,7 +336,7 @@ export async function sendOrderStatusEmail(email: string, name: string, order: a
           <div style="background: #F9FAFB; padding: 20px 40px; border-top: 1px solid #eaeaea; text-align: center;">
             <p style="color: #9CA3AF; font-size: 12px; margin: 0;">
               AluminiumPro &bull; Khalilabad, Sant Kabir Nagar, UP &bull;
-              <a href="mailto:sales@aluminiumpro.in" style="color: #D4A853; text-decoration: none;">sales@aluminiumpro.in</a>
+              <a href="mailto:shravanupadhyay54@gmail.com" style="color: #D4A853; text-decoration: none;">shravanupadhyay54@gmail.com</a>
             </p>
           </div>
         </div>

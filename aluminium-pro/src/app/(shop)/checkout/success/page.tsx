@@ -13,10 +13,10 @@ export default function CheckoutSuccessPage() {
   const [mounted, setMounted] = useState(false)
   const [order, setOrder] = useState<any>(null)
   
-  // Replace these with your actual details
-  const upiId = "9044137148@ybl" // Use phone number based UPI or generic
-  const phoneNumber = "9044137148"
-  const displayName = "Aluminium House"
+  // Use environment variables for payment details
+  const upiId = process.env.NEXT_PUBLIC_UPI_ID || "9044137148@ybl"
+  const phoneNumber = process.env.NEXT_PUBLIC_UPI_PHONE || "9044137148"
+  const displayName = process.env.NEXT_PUBLIC_UPI_NAME || "Aluminium House"
 
   useEffect(() => {
     setMounted(true)

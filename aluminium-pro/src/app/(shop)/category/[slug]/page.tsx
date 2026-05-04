@@ -28,18 +28,7 @@ function CategoryContent({ categorySlug }: { categorySlug: string }) {
     }
   }
 
-  const getBannerImage = (slug: string) => {
-    switch(slug) {
-      case "sheets": return "https://images.unsplash.com/photo-1518557984649-7b161c230cfa?q=80&w=1600&auto=format&fit=crop" // Metallic texture
-      case "material": return "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1600&auto=format&fit=crop" // Construction/metal
-      case "grills": return "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1600&auto=format&fit=crop" // Architectural/grid
-      case "accessories": return "https://images.unsplash.com/photo-1586864387789-628af9feed72?q=80&w=1600&auto=format&fit=crop" // Hardware/tools
-      default: return "https://images.unsplash.com/photo-1518557984649-7b161c230cfa?q=80&w=1600&auto=format&fit=crop"
-    }
-  }
-
   const categoryName = getCategoryName(categorySlug)
-  const bannerImage = getBannerImage(categorySlug)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -80,19 +69,6 @@ function CategoryContent({ categorySlug }: { categorySlug: string }) {
 
   return (
     <div className="container mx-auto px-4 py-8 lg:py-12">
-      {/* Header Banner */}
-      <div className="w-full h-48 sm:h-64 rounded-2xl overflow-hidden relative mb-8 flex items-center justify-center">
-        <img src={bannerImage} alt={categoryName} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-charcoal/70 bg-aluminium-texture" />
-        <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-3xl sm:text-5xl font-heading font-extrabold mb-4 capitalize drop-shadow-md">
-            {categoryName}
-          </h1>
-          <p className="text-gray-200 text-lg max-w-2xl mx-auto drop-shadow">
-            Explore our premium range of {categoryName.toLowerCase()} designed for maximum durability and finish.
-          </p>
-        </div>
-      </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Sidebar */}

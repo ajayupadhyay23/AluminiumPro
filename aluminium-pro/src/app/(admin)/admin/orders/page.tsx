@@ -43,7 +43,9 @@ export default function AdminOrdersPage() {
     (o.orderNumber || o.id).toLowerCase().includes(searchTerm.toLowerCase()) ||
     o.user?.businessName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     o.user?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    o.user?.email?.toLowerCase().includes(searchTerm.toLowerCase())
+    o.user?.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    o.guestEmail?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    o.guestPhone?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   return (

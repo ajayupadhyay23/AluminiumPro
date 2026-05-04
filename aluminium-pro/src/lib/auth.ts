@@ -24,7 +24,8 @@ export const authOptions: NextAuthOptions = {
           image: profile.picture,
           role: "CUSTOMER", // default role
         }
-      }
+      },
+      allowDangerousEmailAccountLinking: true,
     }),
     CredentialsProvider({
       name: "Credentials",

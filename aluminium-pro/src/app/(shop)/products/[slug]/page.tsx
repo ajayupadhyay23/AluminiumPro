@@ -207,7 +207,7 @@ export default function ProductDetailPage() {
                 <input 
                   type="text" 
                   value={pincode}
-                  onChange={(e) => setPincode(e.target.value.replace(/\\D/g, '').slice(0,6))}
+                  onChange={(e) => setPincode(e.target.value.replace(/\D/g, '').slice(0,6))}
                   placeholder="Enter 6-digit Pincode"
                   className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-gold focus:ring-gold sm:text-sm px-3 py-2 border outline-none"
                 />

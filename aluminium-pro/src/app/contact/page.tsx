@@ -65,16 +65,20 @@ export default function ContactPage() {
             animate="visible"
           >
             {/* Address */}
-            <motion.div variants={fadeIn} className="bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex gap-5 group hover:border-gold/30 hover:shadow-gold/5 transition-all">
-              <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-700 group-hover:bg-gold group-hover:text-white transition-colors shrink-0">
+            <motion.div variants={fadeIn} className="bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex gap-5 group hover:border-gold/30 hover:shadow-gold/5 transition-all relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gold/5 rounded-full -mr-12 -mt-12 transition-all group-hover:bg-gold/10" />
+              <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-700 group-hover:bg-gold group-hover:text-white transition-all transform group-hover:scale-110 shadow-sm shrink-0">
                 <MapPin className="w-6 h-6" />
               </div>
-              <div>
-                <h3 className="text-lg font-bold text-slate-900 mb-1">Visit Us</h3>
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="text-lg font-bold text-slate-900">Visit Us</h3>
+                  <span className="text-[10px] font-bold bg-gold text-charcoal px-2 py-0.5 rounded-full uppercase tracking-tighter shadow-sm animate-pulse">Pinned</span>
+                </div>
                 <p className="text-slate-600 leading-relaxed">
-                  F-19 Industrial Area,<br />
-                  Khalilabad, Sant Kabir Nagar,<br />
-                  Uttar Pradesh, India
+                  ALUMINIUM HOUSE,<br />
+                  F-19 Industrial Area, Khalilabad,<br />
+                  Sant Kabir Nagar, Uttar Pradesh
                 </p>
               </div>
             </motion.div>
@@ -102,7 +106,7 @@ export default function ContactPage() {
                   <Mail className="w-5 h-5" />
                 </div>
                 <h3 className="text-sm font-bold text-slate-900 mb-1">Email</h3>
-                <a href="mailto:sales@aluminiumpro.in" className="text-xs text-gold hover:underline break-all">sales@aluminiumpro.in</a>
+                <a href="mailto:shravanupadhyay54@gmail.com" className="text-xs text-gold hover:underline break-all">shravanupadhyay54@gmail.com</a>
               </div>
               <div className="bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex flex-col items-center text-center group hover:border-gold/30 transition-all">
                 <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-700 mb-3">
@@ -162,9 +166,8 @@ export default function ContactPage() {
             {/* Map */}
             <div className="bg-white rounded-3xl p-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
               <div className="w-full h-64 sm:h-80 rounded-2xl overflow-hidden relative bg-slate-100">
-                {/* Fallback generic google maps embed format that usually doesn't have API key pb issues */}
                 <iframe 
-                  src="https://maps.google.com/maps?q=Khalilabad,+Sant+Kabir+Nagar,+Uttar+Pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.885698717551!2d83.076899!3d26.7686524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399139366df6686f%3A0xe541c9b6e7f1a30c!2sALUMINIUM%20HOUSE%20(UPADHYAY%20ALUMINIUM)!5e0!3m2!1sen!2sin!4v1714811800000!5m2!1sen!2sin" 
                   width="100%" 
                   height="100%" 
                   frameBorder="0" 
@@ -173,6 +176,16 @@ export default function ContactPage() {
                   aria-hidden="false" 
                   tabIndex={0}
                 ></iframe>
+              </div>
+              <div className="p-4 text-center">
+                <a 
+                  href="https://maps.app.goo.gl/YPMfAzoeAAaC3QdT9" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gold font-bold text-sm hover:underline flex items-center justify-center gap-2"
+                >
+                  <MapPin className="w-4 h-4" /> View on Google Maps
+                </a>
               </div>
             </div>
           </motion.div>

@@ -19,10 +19,10 @@ export async function GET(req: Request) {
       orders,
       recentOrders
     ] = await Promise.all([
-      prisma.user.count({ where: { role: 'USER' } }),
+      prisma.user.count({ where: { role: 'CUSTOMER' } }),
       prisma.product.count(),
       prisma.order.findMany({
-        select: { totalAmount: true, status: true, id: true, createdAt: true }
+        select: { total: true, status: true, id: true, createdAt: true }
       }),
       prisma.order.findMany({
         take: 5,
@@ -36,7 +36,7 @@ export async function GET(req: Request) {
     // Calculate metrics
     const totalRevenue = orders
       .filter(o => o.status !== 'CANCELLED')
-      .reduce((sum, order) => sum + order.totalAmount, 0)
+      .reduce((sum, order) => sum + order.total, 0)
 
     const pendingOrdersCount = orders.filter(o => o.status === 'PENDING' || o.status === 'PAID').length
     const totalOrdersCount = orders.length

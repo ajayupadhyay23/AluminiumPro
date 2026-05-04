@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { signIn } from "next-auth/react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import toast from "react-hot-toast"
 import { Hexagon } from "lucide-react"
@@ -21,7 +21,7 @@ const registerSchema = z.object({
   phone: z.string().regex(/^[0-9]{10}$/, "Must be a 10-digit mobile number"),
   password: z.string().min(8, "Password must be at least 8 characters"),
   confirmPassword: z.string(),
-  gstNumber: z.string().optional().refine(val => !val || /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(val), "Invalid GST format"),
+  gstNumber: z.string().optional().refine(val => !val || /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(val.toUpperCase()), "Invalid GST format"),
   terms: z.literal(true, { errorMap: () => ({ message: "You must accept the terms" }) })
 }).refine(data => data.password === data.confirmPassword, {
   message: "Passwords don't match",
@@ -32,14 +32,17 @@ type RegisterFormData = z.infer<typeof registerSchema>
 
 export default function RegisterPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [loading, setLoading] = useState(false)
   const [showOtp, setShowOtp] = useState(false)
   const [emailForOtp, setEmailForOtp] = useState("")
   const [otp, setOtp] = useState("")
 
-  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema)
   })
+
+  const formData = watch()
 
   const onSubmit = async (data: RegisterFormData) => {
     setLoading(true)
@@ -74,8 +77,23 @@ export default function RegisterPage() {
     try {
       const res = await axios.post('/api/auth/verify-email', { email: emailForOtp, otp })
       if (res.data.success) {
-        toast.success("Email verified successfully! Please log in.")
-        router.push('/login')
+        toast.success("Email verified successfully!")
+        
+        // Auto-login after verification
+        const loginRes = await signIn("credentials", {
+          redirect: false,
+          email: formData.email,
+          password: formData.password,
+        })
+
+        if (!loginRes?.error) {
+          const callbackUrl = searchParams?.get("callbackUrl") || "/account/dashboard"
+          router.push(callbackUrl)
+          router.refresh()
+        } else {
+          toast.error("Auto-login failed. Please log in manually.")
+          router.push('/login')
+        }
       }
     } catch (error: any) {
       toast.error(error.response?.data?.error || "Verification failed")
@@ -104,7 +122,7 @@ export default function RegisterPage() {
                 type="text"
                 maxLength={6}
                 value={otp}
-                onChange={(e) => setOtp(e.target.value.replace(/\\D/g, ''))}
+                onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
                 placeholder="000000"
                 className="text-center text-3xl letter-spacing-widest h-16 w-48 font-bold"
               />
@@ -203,7 +221,7 @@ export default function RegisterPage() {
 
             <p className="text-center mt-6 text-sm text-gray-600">
               Already have an account?{" "}
-              <Link href="/login" className="font-semibold text-gold hover:underline">
+              <Link href={`/login${searchParams?.get("callbackUrl") ? `?callbackUrl=${searchParams.get("callbackUrl")}` : ""}`} className="font-semibold text-gold hover:underline">
                 Log in here
               </Link>
             </p>

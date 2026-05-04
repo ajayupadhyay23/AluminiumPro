@@ -32,7 +32,7 @@ export default function Footer() {
               </a>
             </div>
             <div className="pt-2">
-              <span className="text-xs text-gray-500 font-mono bg-black/20 px-3 py-1 rounded">GST: 03XXXX1234X1ZX</span>
+              <span className="text-xs text-gray-500 font-mono bg-black/20 px-3 py-1 rounded">GST: 09ABAFR0836L1Z0</span>
             </div>
           </div>
 
@@ -79,7 +79,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Mail className="w-5 h-5 text-gold shrink-0" />
-                <span>sales@aluminiumpro.in</span>
+                <span>shravanupadhyay54@gmail.com</span>
               </li>
               <li className="flex items-start gap-3 text-sm">
                 <Clock className="w-5 h-5 text-gold shrink-0 mt-0.5" />

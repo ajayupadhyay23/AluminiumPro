@@ -27,10 +27,15 @@ export default function OrdersPage() {
 
   const getStatusColor = (status: string) => {
     switch(status) {
+      case 'PLACED': return 'bg-yellow-100 text-yellow-800 border-yellow-200'
       case 'PENDING': return 'bg-yellow-100 text-yellow-800 border-yellow-200'
+      case 'CONFIRMED': return 'bg-blue-100 text-blue-800 border-blue-200'
       case 'PAID': return 'bg-blue-100 text-blue-800 border-blue-200'
       case 'PROCESSING': return 'bg-purple-100 text-purple-800 border-purple-200'
+      case 'PACKED': return 'bg-purple-100 text-purple-800 border-purple-200'
+      case 'DISPATCHED': return 'bg-orange-100 text-orange-800 border-orange-200'
       case 'SHIPPED': return 'bg-orange-100 text-orange-800 border-orange-200'
+      case 'IN_TRANSIT': return 'bg-orange-100 text-orange-800 border-orange-200'
       case 'DELIVERED': return 'bg-green-100 text-green-800 border-green-200'
       case 'CANCELLED': return 'bg-red-100 text-red-800 border-red-200'
       default: return 'bg-gray-100 text-gray-800 border-gray-200'
@@ -82,7 +87,7 @@ export default function OrdersPage() {
               {orders.map((order) => (
                 <tr key={order.id} className="hover:bg-gray-50/50 transition-colors">
                   <td className="p-4 pl-6 sm:pl-8">
-                    #{order.id.slice(-8).toUpperCase()}
+                    {order.orderNumber || `#${order.id.slice(-8).toUpperCase()}`}
                   </td>
                   <td className="p-4 text-gray-500">
                     {new Date(order.createdAt).toLocaleDateString('en-IN', {
@@ -98,7 +103,7 @@ export default function OrdersPage() {
                     {order._count.items}
                   </td>
                   <td className="p-4 font-bold">
-                    ₹{order.totalAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                    ₹{order.total.toLocaleString(undefined, { maximumFractionDigits: 2 })}
                   </td>
                   <td className="p-4 pr-6 sm:pr-8 text-right flex items-center justify-end gap-2">
                     {/* Invoice Button placeholder - will implement real PDF generation later if requested */}

@@ -128,7 +128,9 @@ export default function AdminDashboardPage() {
             <tbody className="divide-y divide-gray-100 text-charcoal font-medium">
               {data.recentOrders.length > 0 ? data.recentOrders.map((order: any) => (
                 <tr key={order.id} className="hover:bg-gray-50">
-                  <td className="p-4 pl-6">#{order.id.slice(-8).toUpperCase()}</td>
+                  <td className="p-4 pl-6 font-bold text-charcoal">
+                    {order.orderNumber || `#${order.id.slice(-8).toUpperCase()}`}
+                  </td>
                   <td className="p-4">
                     <p className="font-bold">{order.user?.businessName || order.user?.name || "Unknown"}</p>
                   </td>
@@ -145,7 +147,7 @@ export default function AdminDashboardPage() {
                     </span>
                   </td>
                   <td className="p-4 text-right pr-6 font-bold">
-                    ₹{order.totalAmount.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                    ₹{order.total.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                   </td>
                 </tr>
               )) : (
