@@ -330,10 +330,11 @@ export default function OrderDetailsPage() {
             </h3>
             {order.addressSnapshot ? (
               <address className="not-italic text-sm text-gray-600 leading-relaxed">
-                <p className="font-bold text-charcoal mb-2 text-base">{(order.addressSnapshot as any).name || order.user.email}</p>
-                <p className="flex items-start gap-2">{(order.addressSnapshot as any).street}</p>
+                <p className="font-bold text-charcoal mb-2 text-base">{(order.addressSnapshot as any).name || order.user?.email || "Customer"}</p>
+                <p className="flex items-start gap-2">{(order.addressSnapshot as any).street || (order.addressSnapshot as any).line1 || "No street info"}</p>
+                {(order.addressSnapshot as any).line2 && <p>{(order.addressSnapshot as any).line2}</p>}
                 <p>{(order.addressSnapshot as any).city}, {(order.addressSnapshot as any).state} - {(order.addressSnapshot as any).pincode}</p>
-                <p className="mt-2 font-bold text-charcoal">📞 {(order.addressSnapshot as any).phone}</p>
+                <p className="mt-2 font-bold text-charcoal">📞 {(order.addressSnapshot as any).phone || "No phone info"}</p>
               </address>
             ) : (
               <p className="text-sm text-gray-500">Address snapshot not found.</p>
