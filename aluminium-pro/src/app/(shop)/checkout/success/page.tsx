@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import { CheckCircle2, Package, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { BUSINESS_CONFIG } from "@/config/business"
 
 export default function CheckoutSuccessPage() {
   const searchParams = useSearchParams()
@@ -14,9 +15,10 @@ export default function CheckoutSuccessPage() {
   const [order, setOrder] = useState<any>(null)
   
   // Use environment variables for payment details
-  const upiId = process.env.NEXT_PUBLIC_UPI_ID || "9044137148@ybl"
-  const phoneNumber = process.env.NEXT_PUBLIC_UPI_PHONE || "9044137148"
-  const displayName = process.env.NEXT_PUBLIC_UPI_NAME || "Aluminium House"
+  // Use config for payment details
+  const upiId = process.env.NEXT_PUBLIC_UPI_ID || BUSINESS_CONFIG.upi.id
+  const phoneNumber = process.env.NEXT_PUBLIC_UPI_PHONE || BUSINESS_CONFIG.upi.phone
+  const displayName = process.env.NEXT_PUBLIC_UPI_NAME || BUSINESS_CONFIG.upi.name
 
   useEffect(() => {
     setMounted(true)
@@ -80,6 +82,13 @@ export default function CheckoutSuccessPage() {
             <span className="text-sm font-bold text-gray-500 uppercase">Order Reference</span>
             <span className="font-mono font-bold text-charcoal">{orderId}</span>
           </div>
+
+          {order?.addressSnapshot?.gstNumber && (
+            <div className="mb-4 pb-4 border-b border-gray-200 flex justify-between items-center">
+              <span className="text-sm font-bold text-gray-500 uppercase">GST Number</span>
+              <span className="font-bold text-charcoal uppercase">{order.addressSnapshot.gstNumber}</span>
+            </div>
+          )}
           
           <div className="flex items-start gap-4">
             <Package className="w-6 h-6 text-gold shrink-0 mt-1" />

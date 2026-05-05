@@ -6,6 +6,7 @@ import Link from "next/link"
 import axios from "axios"
 import { Loader2, ArrowLeft, Package, Truck, CheckCircle2, Building2, MapPin, Download, CreditCard, Copy, QrCode } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { BUSINESS_CONFIG } from "@/config/business"
 import toast from "react-hot-toast"
 
 export default function OrderDetailsPage() {
@@ -78,8 +79,8 @@ export default function OrderDetailsPage() {
     return primary ? primary.url : images[0]?.url
   }
 
-  const upiId = process.env.NEXT_PUBLIC_UPI_ID || "aluminiumpro@okicici"
-  const upiName = process.env.NEXT_PUBLIC_UPI_NAME || "Aluminium Pro"
+  const upiId = process.env.NEXT_PUBLIC_UPI_ID || BUSINESS_CONFIG.upi.id
+  const upiName = process.env.NEXT_PUBLIC_UPI_NAME || BUSINESS_CONFIG.upi.name
 
   return (
     <div className="space-y-6">

@@ -1,5 +1,6 @@
 import { Resend } from 'resend'
 import nodemailer from 'nodemailer'
+import { BUSINESS_CONFIG } from '@/config/business'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -30,9 +31,9 @@ export async function sendVerificationEmail(email: string, name: string, otp: st
           <div style="background: #2B2B2B; padding: 32px 40px; text-align: center;">
             <div style="display: inline-flex; align-items: center; gap: 10px;">
               <div style="width: 36px; height: 36px; background: #D4A853; clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);"></div>
-              <span style="color: #ffffff; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">AluminiumPro</span>
+              <span style="color: #ffffff; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">${BUSINESS_CONFIG.name}</span>
             </div>
-            <p style="color: #9CA3AF; margin: 8px 0 0; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;">Khalilabad, UP</p>
+            <p style="color: #9CA3AF; margin: 8px 0 0; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;">${BUSINESS_CONFIG.address}</p>
           </div>
 
           <!-- Body -->
@@ -57,7 +58,7 @@ export async function sendVerificationEmail(email: string, name: string, otp: st
           <!-- Footer -->
           <div style="background: #F9FAFB; padding: 20px 40px; border-top: 1px solid #eaeaea; text-align: center;">
             <p style="color: #9CA3AF; font-size: 12px; margin: 0;">
-              AluminiumPro &bull; Khalilabad, Sant Kabir Nagar, UP &bull; <a href="mailto:shravanupadhyay54@gmail.com" style="color: #D4A853; text-decoration: none;">shravanupadhyay54@gmail.com</a>
+              ${BUSINESS_CONFIG.name} &bull; ${BUSINESS_CONFIG.address} &bull; <a href="mailto:${BUSINESS_CONFIG.email}" style="color: #D4A853; text-decoration: none;">${BUSINESS_CONFIG.email}</a>
             </p>
           </div>
         </div>
@@ -102,7 +103,7 @@ export async function sendPasswordResetEmail(email: string, name: string, resetU
           <div style="background: #2B2B2B; padding: 32px 40px; text-align: center;">
             <div style="display: inline-flex; align-items: center; gap: 10px;">
               <div style="width: 36px; height: 36px; background: #D4A853; clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);"></div>
-              <span style="color: #ffffff; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">AluminiumPro</span>
+              <span style="color: #ffffff; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">${BUSINESS_CONFIG.name}</span>
             </div>
           </div>
 
@@ -131,7 +132,7 @@ export async function sendPasswordResetEmail(email: string, name: string, resetU
           <!-- Footer -->
           <div style="background: #F9FAFB; padding: 20px 40px; border-top: 1px solid #eaeaea; text-align: center;">
             <p style="color: #9CA3AF; font-size: 12px; margin: 0;">
-              AluminiumPro &bull; Khalilabad, Sant Kabir Nagar, UP
+              ${BUSINESS_CONFIG.name} &bull; ${BUSINESS_CONFIG.address}
             </p>
           </div>
         </div>
@@ -192,7 +193,7 @@ export async function sendOrderConfirmationEmail(email: string, name: string, or
           <div style="background: #2B2B2B; padding: 32px 40px; text-align: center;">
             <div style="display: inline-flex; align-items: center; gap: 10px;">
               <div style="width: 32px; height: 32px; background: #D4A853; clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);"></div>
-              <span style="color: #ffffff; font-size: 22px; font-weight: 800;">AluminiumPro</span>
+              <span style="color: #ffffff; font-size: 22px; font-weight: 800;">${BUSINESS_CONFIG.name}</span>
             </div>
             <div style="margin-top: 16px; background: #D4A853; display: inline-block; padding: 6px 20px; border-radius: 99px;">
               <span style="color: #2B2B2B; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">Order Confirmed ✓</span>
@@ -237,8 +238,8 @@ export async function sendOrderConfirmationEmail(email: string, name: string, or
           <!-- Footer -->
           <div style="background: #F9FAFB; padding: 20px 40px; border-top: 1px solid #eaeaea; text-align: center;">
             <p style="color: #9CA3AF; font-size: 12px; margin: 0;">
-              AluminiumPro &bull; Khalilabad, Sant Kabir Nagar, UP &bull;
-              <a href="mailto:shravanupadhyay54@gmail.com" style="color: #D4A853; text-decoration: none;">shravanupadhyay54@gmail.com</a>
+              ${BUSINESS_CONFIG.name} &bull; ${BUSINESS_CONFIG.address} &bull;
+              <a href="mailto:${BUSINESS_CONFIG.email}" style="color: #D4A853; text-decoration: none;">${BUSINESS_CONFIG.email}</a>
             </p>
           </div>
         </div>
@@ -293,7 +294,7 @@ export async function sendOrderStatusEmail(email: string, name: string, order: a
           <div style="background: #2B2B2B; padding: 32px 40px; text-align: center;">
             <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px;">
               <div style="width: 32px; height: 32px; background: #D4A853; clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);"></div>
-              <span style="color: #ffffff; font-size: 22px; font-weight: 800;">AluminiumPro</span>
+              <span style="color: #ffffff; font-size: 22px; font-weight: 800;">${BUSINESS_CONFIG.name}</span>
             </div>
             <div style="background: ${statusInfo.color}; display: inline-block; padding: 6px 20px; border-radius: 99px;">
               <span style="color: #ffffff; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">${statusInfo.emoji} ${statusInfo.label}</span>
@@ -335,8 +336,8 @@ export async function sendOrderStatusEmail(email: string, name: string, order: a
           <!-- Footer -->
           <div style="background: #F9FAFB; padding: 20px 40px; border-top: 1px solid #eaeaea; text-align: center;">
             <p style="color: #9CA3AF; font-size: 12px; margin: 0;">
-              AluminiumPro &bull; Khalilabad, Sant Kabir Nagar, UP &bull;
-              <a href="mailto:shravanupadhyay54@gmail.com" style="color: #D4A853; text-decoration: none;">shravanupadhyay54@gmail.com</a>
+              ${BUSINESS_CONFIG.name} &bull; ${BUSINESS_CONFIG.address} &bull;
+              <a href="mailto:${BUSINESS_CONFIG.email}" style="color: #D4A853; text-decoration: none;">${BUSINESS_CONFIG.email}</a>
             </p>
           </div>
         </div>
