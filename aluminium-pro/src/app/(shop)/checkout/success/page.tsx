@@ -16,9 +16,9 @@ export default function CheckoutSuccessPage() {
   
   // Use environment variables for payment details
   // Use config for payment details
-  const upiId = process.env.NEXT_PUBLIC_UPI_ID || BUSINESS_CONFIG.upi.id
-  const phoneNumber = process.env.NEXT_PUBLIC_UPI_PHONE || BUSINESS_CONFIG.upi.phone
-  const displayName = process.env.NEXT_PUBLIC_UPI_NAME || BUSINESS_CONFIG.upi.name
+  const upiId = BUSINESS_CONFIG.upi.id
+  const phoneNumber = BUSINESS_CONFIG.upi.phone
+  const displayName = BUSINESS_CONFIG.upi.name
 
   useEffect(() => {
     setMounted(true)

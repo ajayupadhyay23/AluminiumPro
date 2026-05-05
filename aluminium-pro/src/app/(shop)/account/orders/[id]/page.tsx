@@ -79,8 +79,8 @@ export default function OrderDetailsPage() {
     return primary ? primary.url : images[0]?.url
   }
 
-  const upiId = process.env.NEXT_PUBLIC_UPI_ID || BUSINESS_CONFIG.upi.id
-  const upiName = process.env.NEXT_PUBLIC_UPI_NAME || BUSINESS_CONFIG.upi.name
+  const upiId = BUSINESS_CONFIG.upi.id
+  const upiName = BUSINESS_CONFIG.upi.name
 
   return (
     <div className="space-y-6">

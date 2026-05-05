@@ -93,7 +93,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-sm text-gray-400">
-            © {new Date().getFullYear()} AluminiumPro. All rights reserved.
+            © {new Date().getFullYear()} AluminiumPro. v2.1.0-Strict
           </div>
           
           <div className="flex items-center gap-4 text-sm text-gray-400">
