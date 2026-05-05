@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import axios from "axios"
-import { Loader2, Package, Eye, FileText, Search } from "lucide-react"
+import { Loader2, PackageSearch, Eye, FileText } from "lucide-react"
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<any[]>([])
@@ -60,7 +60,7 @@ export default function OrdersPage() {
       {orders.length === 0 ? (
         <div className="p-12 text-center flex flex-col items-center">
           <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-            <Package className="w-10 h-10 text-gray-300" />
+            <PackageSearch className="w-10 h-10 text-gray-300" />
           </div>
           <h3 className="text-xl font-bold text-charcoal mb-2">No Orders Yet</h3>
           <p className="text-silver mb-6 max-w-sm">You haven't placed any wholesale orders yet. Start exploring our premium aluminium profiles.</p>
@@ -87,16 +87,16 @@ export default function OrdersPage() {
               {orders.map((order) => (
                 <tr key={order.id} className="hover:bg-gray-50/50 transition-colors">
                   <td className="p-4 pl-6 sm:pl-8">
-                    {order.orderNumber || `#${order.id.slice(-8).toUpperCase()}`}
+                    {order.orderNumber || (order.id ? `#${order.id.slice(-8).toUpperCase()}` : 'N/A')}
                   </td>
                   <td className="p-4 text-gray-500">
-                    {new Date(order.createdAt).toLocaleDateString('en-IN', {
+                    {order.createdAt ? new Date(order.createdAt).toLocaleDateString('en-IN', {
                       day: 'numeric', month: 'short', year: 'numeric'
-                    })}
+                    }) : 'N/A'}
                   </td>
                   <td className="p-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-bold border ${getStatusColor(order.status)}`}>
-                      {order.status}
+                      {order.status || 'UNKNOWN'}
                     </span>
                   </td>
                   <td className="p-4 text-gray-500">
