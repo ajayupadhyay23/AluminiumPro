@@ -87,15 +87,23 @@ export async function POST(req: Request) {
     try {
       // Send OTP email via Resend or Nodemailer
       await sendVerificationEmail(email, name, otp)
-    } catch (emailError) {
-      console.error('[Register] Email sending failed, but OTP is generated:', emailError)
-      // We don't fail the registration here, we allow them to proceed since OTP is logged.
-      // But we notify the frontend that email failed.
+    } catch (emailError: any) {
+      console.error('[Register] Email sending failed:', emailError)
+      
+      const isResendTrial = process.env.EMAIL_FROM === 'onboarding@resend.dev' || !process.env.EMAIL_FROM;
+      let errorDetail = isResendTrial 
+        ? " (Note: Resend trial only sends to the account owner's email.)" 
+        : "";
+      
+      if (process.env.ALLOW_MASTER_OTP === 'true') {
+        errorDetail += " [TEST MODE: Use code 123456 to verify]";
+      }
+
       return NextResponse.json(
         {
           success: true,
           requiresOtp: true,
-          message: 'Account created! Verification code logged to server console (email failed).'
+          message: `Account created, but we couldn't send the email${errorDetail}. OTP has been logged to the server console.`
         },
         { status: 201 }
       )

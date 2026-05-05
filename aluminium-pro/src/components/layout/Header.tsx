@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 import SearchOverlay from "./SearchOverlay"
 import { Button } from "@/components/ui/button"
 import { useCartStore } from "@/store/cartStore"
+import { useWishlistStore } from "@/store/wishlistStore"
 
 const CATEGORIES = [
   { name: "Sheets", href: "/category/sheets", icon: Package },
@@ -22,6 +23,7 @@ export default function Header() {
   const { data: session } = useSession()
   const getTotalItems = useCartStore(state => state.getTotalItems)
   const cartItemCount = getTotalItems()
+  const wishlistCount = useWishlistStore(state => state.items.length)
   
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -119,9 +121,11 @@ export default function Header() {
             </button>
             <Link href="/account/wishlist" className="text-charcoal hover:text-gold transition-colors relative hidden sm:block">
               <Heart className="w-5 h-5 lg:w-6 lg:h-6" />
-              <span className="absolute -top-2 -right-2 bg-gold text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                0
-              </span>
+              {mounted && wishlistCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-gold text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
             </Link>
             <Link href="/cart" className="text-charcoal hover:text-gold transition-colors relative">
               <ShoppingCart className="w-5 h-5 lg:w-6 lg:h-6" />

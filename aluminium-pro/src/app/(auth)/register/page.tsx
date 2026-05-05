@@ -22,7 +22,7 @@ const registerSchema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters"),
   confirmPassword: z.string(),
   gstNumber: z.string().optional().refine(val => !val || /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(val.toUpperCase()), "Invalid GST format"),
-  terms: z.literal(true, { errorMap: () => ({ message: "You must accept the terms" }) })
+  terms: z.literal(true, { message: "You must accept the terms" })
 }).refine(data => data.password === data.confirmPassword, {
   message: "Passwords don't match",
   path: ["confirmPassword"]
@@ -117,7 +117,7 @@ export default function RegisterPage() {
             <h2 className="text-2xl font-bold text-charcoal">Verify your email</h2>
             <p className="text-gray-600">We've sent a 6-digit code to {emailForOtp}</p>
             
-            <div className="flex justify-center">
+            <div className="flex flex-col gap-4 items-center">
               <Input
                 type="text"
                 maxLength={6}
@@ -126,11 +126,23 @@ export default function RegisterPage() {
                 placeholder="000000"
                 className="text-center text-3xl letter-spacing-widest h-16 w-48 font-bold"
               />
+              <button 
+                type="button"
+                onClick={() => onSubmit(formData)}
+                className="text-sm text-gold hover:underline font-semibold"
+                disabled={loading}
+              >
+                Didn't receive the code? Resend OTP
+              </button>
             </div>
             
-            <Button onClick={handleVerifyOtp} className="w-full" disabled={loading}>
+            <Button onClick={handleVerifyOtp} className="w-full h-12 text-lg" disabled={loading}>
               {loading ? "Verifying..." : "Verify OTP"}
             </Button>
+            
+            <p className="text-sm text-gray-500 mt-4">
+              Note: If using the trial email service, please check your spam folder or the email account associated with the Resend API key.
+            </p>
           </div>
         ) : (
           <>

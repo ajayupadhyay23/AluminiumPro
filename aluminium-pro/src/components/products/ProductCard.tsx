@@ -1,9 +1,12 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCartStore } from "@/store/cartStore"
+import { useWishlistStore } from "@/store/wishlistStore"
+import { cn } from "@/lib/utils"
 import toast from "react-hot-toast"
 
 interface ProductCardProps {
@@ -12,6 +15,12 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const addItemToCart = useCartStore(state => state.addItem)
+  const { items: wishlistItems, addItem: addToWishlist, removeItem: removeFromWishlist } = useWishlistStore()
+  
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  const isWishlisted = mounted && wishlistItems.some(item => item.id === product.id)
   // Safe extraction of primary image
   let imageUrl = "https://picsum.photos/400/300?random=1"
   if (product.primaryImage) {
@@ -46,8 +55,34 @@ export default function ProductCard({ product }: ProductCardProps) {
             </span>
           )}
         </div>
-        <button className="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-white transition-colors">
-          <Heart className="w-4 h-4" />
+        <button 
+          type="button"
+          className={cn(
+            "absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300",
+            isWishlisted 
+              ? "bg-red-500 text-white shadow-lg scale-110" 
+              : "bg-white/80 backdrop-blur text-gray-500 hover:text-red-500 hover:bg-white"
+          )}
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            if (isWishlisted) {
+              removeFromWishlist(product.id)
+              toast.success("Removed from wishlist")
+            } else {
+              addToWishlist({
+                id: product.id,
+                name: product.name,
+                slug: product.slug,
+                price: product.pricePerKg,
+                image: imageUrl,
+                category: product.category
+              })
+              toast.success("Added to wishlist!")
+            }
+          }}
+        >
+          <Heart className={cn("w-4 h-4", isWishlisted && "fill-current")} />
         </button>
       </div>
       

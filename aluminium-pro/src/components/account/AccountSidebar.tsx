@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Package, UserCircle, LogOut } from "lucide-react"
+import { LayoutDashboard, Package, UserCircle, LogOut, Heart } from "lucide-react"
 import { signOut } from "next-auth/react"
 
 export default function AccountSidebar() {
@@ -11,6 +11,7 @@ export default function AccountSidebar() {
   const navItems = [
     { name: "Dashboard", href: "/account/dashboard", icon: LayoutDashboard },
     { name: "Order History", href: "/account/orders", icon: Package },
+    { name: "My Wishlist", href: "/account/wishlist", icon: Heart },
     { name: "Profile & Address", href: "/account/profile", icon: UserCircle },
   ]
 

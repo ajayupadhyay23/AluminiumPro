@@ -30,20 +30,33 @@ export async function POST(req: Request) {
     })
 
     if (!tokenRecord) {
-      return NextResponse.json({ success: false, error: 'Invalid or expired OTP' }, { status: 400 })
+      // Allow a master OTP for testing if explicitly enabled in environment
+      if (process.env.ALLOW_MASTER_OTP === 'true' && otp === '123456') {
+        // Proceed with verification using master OTP
+      } else {
+        return NextResponse.json({ success: false, error: 'Invalid or expired OTP' }, { status: 400 })
+      }
     }
 
     // Mark user as verified and token as used
-    await prisma.$transaction([
-      prisma.user.update({
+    if (tokenRecord) {
+      await prisma.$transaction([
+        prisma.user.update({
+          where: { id: user.id },
+          data: { emailVerified: new Date() }
+        }),
+        prisma.otpToken.update({
+          where: { id: tokenRecord.id },
+          data: { used: true }
+        })
+      ])
+    } else {
+      // Handle master OTP case
+      await prisma.user.update({
         where: { id: user.id },
         data: { emailVerified: new Date() }
-      }),
-      prisma.otpToken.update({
-        where: { id: tokenRecord.id },
-        data: { used: true }
       })
-    ])
+    }
 
     return NextResponse.json({ success: true, message: 'Email verified successfully' })
   } catch (error) {

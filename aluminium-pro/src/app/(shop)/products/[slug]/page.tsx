@@ -12,6 +12,9 @@ import PriceCalculator from "@/components/shared/PriceCalculator"
 import ProductCard from "@/components/products/ProductCard"
 import { Button } from "@/components/ui/button"
 import { useCartStore } from "@/store/cartStore"
+import { useWishlistStore } from "@/store/wishlistStore"
+import { cn } from "@/lib/utils"
+import { Heart } from "lucide-react"
 
 export default function ProductDetailPage() {
   const params = useParams()
@@ -27,6 +30,26 @@ export default function ProductDetailPage() {
   const [deliveryLoading, setDeliveryLoading] = useState(false)
   
   const addItemToCart = useCartStore(state => state.addItem)
+  const { items: wishlistItems, addItem: addToWishlist, removeItem: removeFromWishlist } = useWishlistStore()
+  const isWishlisted = mounted && wishlistItems.some(item => item.id === product?.id)
+
+  const toggleWishlist = () => {
+    if (!product) return
+    if (isWishlisted) {
+      removeFromWishlist(product.id)
+      toast.success("Removed from wishlist")
+    } else {
+      addToWishlist({
+        id: product.id,
+        name: product.name,
+        slug: product.slug,
+        price: product.pricePerKg,
+        image: product.primaryImage || (product.images?.[0]?.url) || "https://picsum.photos/400/300?random=1",
+        category: product.category
+      })
+      toast.success("Added to wishlist!")
+    }
+  }
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -154,9 +177,27 @@ export default function ProductDetailPage() {
               )}
             </div>
 
-            <h1 className="text-3xl lg:text-4xl font-heading font-extrabold text-charcoal mb-4">
-              {product.name}
-            </h1>
+            <div className="flex items-start justify-between gap-4 mb-4">
+              <h1 className="text-3xl lg:text-4xl font-heading font-extrabold text-charcoal">
+                {product.name}
+              </h1>
+              <button 
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  toggleWishlist()
+                }}
+                className={cn(
+                  "p-3 rounded-full border transition-all duration-300",
+                  isWishlisted 
+                    ? "bg-red-50 border-red-200 text-red-500 shadow-sm" 
+                    : "bg-white border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-200"
+                )}
+              >
+                <Heart className={cn("w-6 h-6", isWishlisted && "fill-current")} />
+              </button>
+            </div>
             
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
               {product.description}
