@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import axios from "axios"
-import { Loader2, PackageSearch, Eye, FileText } from "lucide-react"
+import { Loader2, Package, Eye, FileText, Search } from "lucide-react"
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<any[]>([])
@@ -60,7 +60,7 @@ export default function OrdersPage() {
       {orders.length === 0 ? (
         <div className="p-12 text-center flex flex-col items-center">
           <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-            <PackageSearch className="w-10 h-10 text-gray-300" />
+            <Package className="w-10 h-10 text-gray-300" />
           </div>
           <h3 className="text-xl font-bold text-charcoal mb-2">No Orders Yet</h3>
           <p className="text-silver mb-6 max-w-sm">You haven't placed any wholesale orders yet. Start exploring our premium aluminium profiles.</p>
@@ -100,7 +100,7 @@ export default function OrdersPage() {
                     </span>
                   </td>
                   <td className="p-4 text-gray-500">
-                    {order._count.items}
+                    {order._count?.items || 0}
                   </td>
                   <td className="p-4 font-bold">
                     ₹{(order.total || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}
