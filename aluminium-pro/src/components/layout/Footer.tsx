@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Hexagon, Globe, Camera, Briefcase, Video, MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react"
+import { BUSINESS_CONFIG } from "@/config/business"
 
 export default function Footer() {
   return (
@@ -32,7 +33,7 @@ export default function Footer() {
               </a>
             </div>
             <div className="pt-2">
-              <span className="text-xs text-gray-500 font-mono bg-black/20 px-3 py-1 rounded">GST: 09ABAFR0836L1Z0</span>
+              <span className="text-xs text-gray-500 font-mono bg-black/20 px-3 py-1 rounded">GST: {BUSINESS_CONFIG.gstNumber}</span>
             </div>
           </div>
 
@@ -70,16 +71,16 @@ export default function Footer() {
               <li className="flex flex-col gap-2 text-sm">
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-gold shrink-0" />
-                  <span>+91 94154 22413 / +91 94505 57148</span>
+                  <span>+91 {BUSINESS_CONFIG.phone}</span>
                 </div>
-                <a href="https://wa.me/919415422413" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors px-4 py-2 mt-2 rounded-lg font-bold w-max">
+                <a href={`https://wa.me/91${BUSINESS_CONFIG.phone}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors px-4 py-2 mt-2 rounded-lg font-bold w-max">
                   <MessageCircle className="w-4 h-4" />
                   Chat on WhatsApp
                 </a>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Mail className="w-5 h-5 text-gold shrink-0" />
-                <span>shravanupadhyay54@gmail.com</span>
+                <span>{BUSINESS_CONFIG.email}</span>
               </li>
               <li className="flex items-start gap-3 text-sm">
                 <Clock className="w-5 h-5 text-gold shrink-0 mt-0.5" />

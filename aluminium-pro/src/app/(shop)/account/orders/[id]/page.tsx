@@ -175,11 +175,18 @@ export default function OrderDetailsPage() {
                   <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 text-center">Scan via any UPI App</p>
                   <div className="p-2 bg-gray-50 rounded-lg shadow-inner">
                     <img 
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`upi://pay?pa=${upiId}&pn=${upiName}&am=${order.total}&cu=INR`)}`}
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`upi://pay?pa=${upiId}&pn=${upiName}&am=${order.total.toFixed(2)}&cu=INR`)}`}
                       alt="UPI QR Code"
                       className="w-28 h-28"
                     />
                   </div>
+                  {/* Mobile Pay Button */}
+                  <a 
+                    href={`upi://pay?pa=${upiId}&pn=${upiName}&am=${order.total.toFixed(2)}&cu=INR`}
+                    className="sm:hidden w-full bg-gold text-charcoal py-2 rounded-lg font-bold flex items-center justify-center gap-2 mt-3 text-xs"
+                  >
+                    <QrCode className="w-4 h-4" /> Pay Now
+                  </a>
                 </div>
               </div>
             </div>

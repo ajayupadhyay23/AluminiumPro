@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Send, ArrowRight } from "lucide-react";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { BUSINESS_CONFIG } from "@/config/business";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -90,9 +91,8 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-slate-900 mb-1">Call Us</h3>
-                <p className="text-slate-600 mb-1">+91 94154 22413</p>
-                <p className="text-slate-600 mb-3">+91 94505 57148</p>
-                <a href="https://wa.me/919415422413" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-[#25D366] hover:underline">
+                <p className="text-slate-600 mb-1">+91 {BUSINESS_CONFIG.phone}</p>
+                <a href={`https://wa.me/91${BUSINESS_CONFIG.phone}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-[#25D366] hover:underline">
                   <MessageCircle className="w-4 h-4" />
                   Chat on WhatsApp
                 </a>
@@ -106,7 +106,7 @@ export default function ContactPage() {
                   <Mail className="w-5 h-5" />
                 </div>
                 <h3 className="text-sm font-bold text-slate-900 mb-1">Email</h3>
-                <a href="mailto:shravanupadhyay54@gmail.com" className="text-xs text-gold hover:underline break-all">shravanupadhyay54@gmail.com</a>
+                <a href={`mailto:${BUSINESS_CONFIG.email}`} className="text-xs text-gold hover:underline break-all">{BUSINESS_CONFIG.email}</a>
               </div>
               <div className="bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 flex flex-col items-center text-center group hover:border-gold/30 transition-all">
                 <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-700 mb-3">

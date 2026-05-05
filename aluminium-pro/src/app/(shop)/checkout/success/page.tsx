@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import Link from "next/link"
-import { CheckCircle2, Package, ArrowRight } from "lucide-react"
+import { CheckCircle2, Package, ArrowRight, QrCode } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BUSINESS_CONFIG } from "@/config/business"
 
@@ -68,10 +68,19 @@ export default function CheckoutSuccessPage() {
               <p className="text-sm font-bold text-charcoal mb-3">Scan via any UPI App</p>
               {/* Generate QR Code using a free QR API */}
               <img 
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`upi://pay?pa=${upiId}&pn=${displayName}&am=${order.total}&cu=INR`)}`}
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(`upi://pay?pa=${upiId}&pn=${displayName}&am=${order.total.toFixed(2)}&cu=INR`)}`}
                 alt="UPI QR Code"
-                className="w-48 h-48 mb-3"
+                className="w-48 h-48 mb-4"
               />
+              
+              {/* Mobile Pay Button */}
+              <a 
+                href={`upi://pay?pa=${upiId}&pn=${displayName}&am=${order.total.toFixed(2)}&cu=INR`}
+                className="sm:hidden w-full bg-gold text-charcoal py-3 rounded-lg font-bold flex items-center justify-center gap-2 mb-2"
+              >
+                <QrCode className="w-5 h-5" /> Pay Now
+              </a>
+              
               <p className="text-xs text-gray-500">Google Pay • PhonePe • Paytm</p>
             </div>
           </div>
