@@ -128,7 +128,7 @@ export default function OrderDetailsPage() {
             <div className="flex-1">
               <h3 className="text-lg font-bold text-amber-900 mb-2">Pending Payment - Manual Verification Required</h3>
               <p className="text-amber-800/80 text-sm mb-4 leading-relaxed">
-                To confirm your order, please complete the payment of <strong className="text-amber-950">₹{order.total.toLocaleString()}</strong> via UPI. 
+                To confirm your order, please complete the payment of <strong className="text-amber-950">₹{(order.total || 0).toLocaleString()}</strong> via UPI. 
                 Once paid, our team will verify the transaction and confirm your order within 2–4 business hours.
               </p>
               
@@ -293,11 +293,11 @@ export default function OrderDetailsPage() {
             <div className="space-y-3 mb-4">
               <div className="flex justify-between text-sm text-gray-600 font-medium">
                 <span>Subtotal</span>
-                <span className="text-charcoal">₹{order.subtotal.toLocaleString()}</span>
+                <span className="text-charcoal">₹{(order.subtotal || 0).toLocaleString()}</span>
               </div>
               <div className="flex justify-between text-sm text-gray-600 font-medium">
                 <span>GST (18%)</span>
-                <span className="text-charcoal">₹{order.gstAmount.toLocaleString()}</span>
+                <span className="text-charcoal">₹{(order.gstAmount || 0).toLocaleString()}</span>
               </div>
               <div className="flex justify-between text-sm text-gray-600 font-medium">
                 <span>Shipping</span>
@@ -308,7 +308,7 @@ export default function OrderDetailsPage() {
               <div className="flex justify-between items-center">
                 <span className="font-bold text-gray-400 text-xs uppercase tracking-widest">Grand Total</span>
                 <span className="font-heading font-extrabold text-charcoal text-2xl">
-                  ₹{order.total.toLocaleString()}
+                  ₹{(order.total || 0).toLocaleString()}
                 </span>
               </div>
             </div>

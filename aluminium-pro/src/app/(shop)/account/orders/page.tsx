@@ -103,7 +103,7 @@ export default function OrdersPage() {
                     {order._count.items}
                   </td>
                   <td className="p-4 font-bold">
-                    ₹{order.total.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                    ₹{(order.total || 0).toLocaleString(undefined, { maximumFractionDigits: 2 })}
                   </td>
                   <td className="p-4 pr-6 sm:pr-8 text-right flex items-center justify-end gap-2">
                     {/* Invoice Button placeholder - will implement real PDF generation later if requested */}
