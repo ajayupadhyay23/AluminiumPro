@@ -23,6 +23,7 @@ export default function ProductDetailPage() {
   const [product, setProduct] = useState<any>(null)
   const [relatedProducts, setRelatedProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [mounted, setMounted] = useState(false)
 
   const [selectedFinish, setSelectedFinish] = useState<string>("")
   const [pincode, setPincode] = useState("")
@@ -52,6 +53,7 @@ export default function ProductDetailPage() {
   }
 
   useEffect(() => {
+    setMounted(true)
     const fetchProduct = async () => {
       try {
         const res = await axios.get(`/api/products/${slug}`)
