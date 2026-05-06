@@ -2,11 +2,12 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Package, UserCircle, LogOut, Heart } from "lucide-react"
-import { signOut } from "next-auth/react"
+import { LayoutDashboard, Package, UserCircle, LogOut, Heart, ShieldCheck } from "lucide-react"
+import { signOut, useSession } from "next-auth/react"
 
 export default function AccountSidebar() {
   const pathname = usePathname()
+  const { data: session } = useSession()
 
   const navItems = [
     { name: "Dashboard", href: "/account/dashboard", icon: LayoutDashboard },
@@ -55,6 +56,16 @@ export default function AccountSidebar() {
               </Link>
             )
           })}
+
+          {(session?.user?.email === 'aluminiumhouse08@gmail.com' || session?.user?.role === 'ADMIN') && (
+            <Link 
+              href="/admin/orders"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gold/10 text-gold font-bold border border-gold/20 hover:bg-gold/20 transition-all mt-2"
+            >
+              <ShieldCheck className="w-5 h-5" />
+              Order Management
+            </Link>
+          )}
 
           <div className="border-t border-gray-100 mt-4 pt-4">
             <button 

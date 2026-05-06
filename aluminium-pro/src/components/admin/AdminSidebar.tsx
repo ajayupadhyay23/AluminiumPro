@@ -17,9 +17,9 @@ export default function AdminSidebar() {
   const pathname = usePathname()
 
   const navItems = [
-    { name: "Overview",  href: "/admin/dashboard", icon: LayoutDashboard },
+    { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
     { name: "Products",  href: "/admin/products",  icon: PackageSearch },
-    { name: "Orders",    href: "/admin/orders",    icon: ShoppingCart },
+    { name: "Order Management", href: "/admin/orders", icon: ShoppingCart },
     { name: "Users",     href: "/admin/users",     icon: Users },
     { name: "Coupons",   href: "/admin/coupons",   icon: Tag },
   ]

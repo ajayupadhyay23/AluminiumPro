@@ -162,6 +162,11 @@ export default function Header() {
                       <Link href="/account/orders" className="flex items-center gap-2 px-4 py-2 text-sm text-charcoal hover:bg-lightbg hover:text-gold transition-colors">
                         <Package className="w-4 h-4" /> My Orders
                       </Link>
+                      {(session.user.email === 'aluminiumhouse08@gmail.com' || session.user.role === 'ADMIN') && (
+                        <Link href="/admin/dashboard" className="flex items-center gap-2 px-4 py-2 text-sm text-gold hover:bg-gold/5 transition-colors font-bold border-t border-gray-100 mt-1">
+                          <LayoutGrid className="w-4 h-4" /> Admin Panel
+                        </Link>
+                      )}
                       <div className="border-t border-gray-100 mt-1 pt-1">
                         <button
                           onClick={() => signOut({ callbackUrl: "/" })}
@@ -237,6 +242,11 @@ export default function Header() {
                 <Link href="/account/dashboard" className="block w-full text-center bg-gold text-charcoal font-bold py-3 rounded-md">
                   My Dashboard
                 </Link>
+                {(session.user.email === 'aluminiumhouse08@gmail.com' || session.user.role === 'ADMIN') && (
+                  <Link href="/admin/dashboard" className="block w-full text-center bg-charcoal text-gold font-bold py-3 rounded-md">
+                    Admin Panel
+                  </Link>
+                )}
                 <Link href="/products" className="block w-full text-center bg-charcoal text-white font-bold py-3 rounded-md">
                   Shop Now
                 </Link>

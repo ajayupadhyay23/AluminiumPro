@@ -7,8 +7,8 @@ export async function GET(req: Request) {
   try {
     const session = await getServerSession(authOptions)
     
-    // Strict Admin check
-    if (!session || session.user?.role !== 'ADMIN') {
+    // Strict Admin check - EXCLUSIVE ACCESS for aluminiumhouse08@gmail.com
+    if (!session || session.user?.email !== 'aluminiumhouse08@gmail.com') {
       return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 403 })
     }
 

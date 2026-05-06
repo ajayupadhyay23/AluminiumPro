@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 import { z } from 'zod'
 import { sendVerificationEmail } from '@/lib/email'
+import { sendSmsOtp } from '@/lib/sms'
 
 const registerSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -87,6 +88,11 @@ export async function POST(req: Request) {
     try {
       // Send OTP email via Resend or Nodemailer
       await sendVerificationEmail(email, name, otp)
+      
+      // Send OTP via SMS to phone
+      if (phone) {
+        await sendSmsOtp(phone, otp)
+      }
     } catch (emailError: any) {
       console.error('[Register] Email sending failed:', emailError)
       

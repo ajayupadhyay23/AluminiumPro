@@ -5,7 +5,7 @@ import { authOptions } from '@/lib/auth'
 import { sendOrderStatusEmail } from '@/lib/email'
 
 function isAdmin(session: any) {
-  return session?.user?.role === 'ADMIN' || session?.user?.role === 'MANAGER'
+  return session?.user?.email === 'aluminiumhouse08@gmail.com'
 }
 
 const VALID_STATUSES = [

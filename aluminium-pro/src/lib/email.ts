@@ -355,3 +355,57 @@ export async function sendOrderStatusEmail(email: string, name: string, order: a
     throw err
   }
 }
+
+export async function sendAdminOrderNotification(order: any) {
+  try {
+    const itemRows = (order.items || []).map((item: any) => `
+      <tr>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">
+          <strong>${item.productName}</strong><br/>
+          <small>${item.finishSelected} · ${item.qty} ${item.unit}</small>
+        </td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">
+          ₹${Number(item.subtotal).toLocaleString('en-IN')}
+        </td>
+      </tr>
+    `).join('')
+
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: BUSINESS_CONFIG.email,
+      subject: `🔔 NEW ORDER RECEIVED — #${order.orderNumber}`,
+      html: `
+        <div style="font-family: sans-serif; max-width: 600px; border: 1px solid #eee; padding: 20px;">
+          <h2 style="color: #2B2B2B;">New Order Alert!</h2>
+          <p>You have received a new order on <strong>${BUSINESS_CONFIG.name}</strong>.</p>
+          
+          <div style="background: #f9f9f9; padding: 15px; margin-bottom: 20px;">
+            <p><strong>Order #:</strong> ${order.orderNumber}</p>
+            <p><strong>Total:</strong> ₹${Number(order.total).toLocaleString('en-IN')}</p>
+          </div>
+
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="background: #eee;">
+                <th style="padding: 10px; text-align: left;">Item</th>
+                <th style="padding: 10px; text-align: right;">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${itemRows}
+            </tbody>
+          </table>
+
+          <p style="margin-top: 20px;">
+            <a href="${process.env.NEXTAUTH_URL}/admin/orders/${order.id}" style="background: #D4A853; color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px;">
+              Manage Order in Admin Panel
+            </a>
+          </p>
+        </div>
+      `,
+    })
+    console.log(`[Admin] Order notification sent to ${BUSINESS_CONFIG.email}`)
+  } catch (err) {
+    console.error('[Admin] Failed to send order notification:', err)
+  }
+}

@@ -2,10 +2,7 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
-
-function isAdmin(session: any) {
-  return session?.user?.role === 'ADMIN' || session?.user?.role === 'MANAGER'
-}
+import { isAdmin } from '@/lib/admin'
 
 // GET /api/admin/products — list all products (paginated)
 export async function GET(req: Request) {

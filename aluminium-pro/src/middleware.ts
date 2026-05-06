@@ -6,9 +6,10 @@ export default withAuth(
     const token = req.nextauth.token
     const path = req.nextUrl.pathname
 
-    // Protect /admin routes
+    // Protect /admin routes - EXCLUSIVE ACCESS for aluminiumhouse08@gmail.com
     if (path.startsWith("/admin")) {
-      if (token?.role !== "ADMIN" && token?.role !== "MANAGER") {
+      const isSuperAdmin = token?.email === "aluminiumhouse08@gmail.com"
+      if (!isSuperAdmin) {
         return NextResponse.redirect(new URL("/", req.url))
       }
     }

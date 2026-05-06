@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import Razorpay from 'razorpay'
+import { sendAdminOrderNotification } from '@/lib/email'
 
 // Razorpay integration removed for direct UPI payments
 
@@ -93,6 +94,9 @@ export async function POST(req: Request) {
         }
       }
     })
+
+    // 3. Notify Admin (Non-blocking)
+    sendAdminOrderNotification(order).catch(err => console.error('Admin notify failed:', err))
 
     return NextResponse.json({ 
       success: true, 
